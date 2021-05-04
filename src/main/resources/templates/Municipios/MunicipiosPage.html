@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+		<title>Municipios</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+		
+		<section>
+			<form action="/municipios" method="POST" th:object="${municipios}">
+				<div class="content">
+					<div class="header">
+						<h2>Registrar município</h2>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<input type="hidden" th:field="${municipios.id}"/>
+							<div class="input-container row mb-3">
+								<label for="estado">Nome do Estado</label>
+								<div class="cont-select">
+									<select class="form-select" th:field=*{estado} th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid'" >
+										<option 
+											th:each="estados : ${lista}" 
+											th:value="${estados.id}" 
+											th:text="${estados.estado}"
+										/>
+									</select>
+								</div>
+								<label for="municipio">Nome do Município</label>
+								<div class="cont-input">
+										<input 
+											class="form-control row" 
+											type="text" 
+											id="municipio" 
+											th:field="*{municipio}"
+											th:classappend="${#fields.hasErrors('municipio')} ? 'is-invalid'" 
+											autocomplete = off
+										/>
+									<div>
+										<button class="btn button-save" type="submit">Salvar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="buttons">
+						<div>
+							<a href="/municipios"><button type="button" class="btn btn-irLista">Ver Lista</button></a>
+							<a href="/imoveis"><button type="button" class="btn button-next">Lista de imóveis</button></a>
+						</div>
+							<a href="/bairros/novo"><button type="button" class="btn button-next">Próximo</button></a>
+					</div>
+				</div>
+			</form>
+		</section>
+			
+		<form action="/municipios" method="GET" th:object="${municipios}">
+			<div class="card notification">
+				<h2>Notificações</h2>
+				<div th:insert="MensagemSucesso"></div>
+				<div th:insert="MensagemErro"></div>
+			</div>
+		</form>
+		
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleHome.css" />
+
+		<title>Home | bgImobiliaria</title>
+	</head>
+	<body>
+		<div th:insert="Sidebar"></div>
+		
+		<section>
+			<div class="column1">
+				<div class="card mb-3">
+				  <a href="/imoveis">
+				      <img src="images/imoveis.svg" alt="Imóveis">
+				    Imóveis
+				  </a>
+				</div>
+				<div class="card mb-3">
+				  <a href="/negocios">
+				      <img src="images/negocios.svg" alt="Negócios">
+				    Negócios
+				  </a>
+				</div>
+				<div class="card mb-3">
+				  <a href="/categorias">
+				      <img src="images/categorias.svg" alt="Categorias">
+				   	Categorias
+				  </a>
+				</div>
+			</div>
+			<div class="column2">
+				<div class="card mb-3">
+				  <a href="/estados">
+				      <img src="images/estados.svg" alt="Estados">
+				   	Estados
+				  </a>
+				</div>
+				<div class="card mb-3">
+				  <a href="/municipios">
+				      <img src="images/municipios.svg" alt="Municípios">
+				   	Municípios
+				  </a>
+				</div>
+				<div class="card mb-3">
+				  <a href="/bairros">
+				      <img src="images/bairros.svg" alt="Bairros">
+				   	Bairros
+				  </a>
+				 </div>
+			</div>
+		</section>
+	</body>
+</html>

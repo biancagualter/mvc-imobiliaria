@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
+
+		<title>Estados | Lista</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+		
+			<div class="list-container">
+				<div class="header">
+					<h2>Estados</h2>
+					<a href="/estados/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+				</div>
+				<div class="card">
+					<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th class="text-center col-md-1" scope="col">#</th>
+					      <th class="text-center col-md-1" scope="col">UF</th>
+					      <th class="text-center col-md-1" scope="col">Estado</th>
+					      <th class="text-center col-md-1" scope="col">Ações</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr th:each="estado : ${estados}">
+					  		<td class="text-center" th:text="${estado.id}"></td>
+					  		<td class="text-center" th:text="${estado.uf}"></td>
+					  		<td class="text-center" th:text="${estado.estado}"></td>
+					  		<td class="text-center">
+					  			<a 
+					  				class="btn btn-link btn-sm" 
+					  				th:href="@{/estados/{id}(id=${estado.id})}"
+					  			>
+					  			<i class="fas fa-edit"></i>
+					  			</a>
+				  				<a 
+				  					class="btn btn-link btn-sm" 
+				  					th:attr="data-id=${estado.id}, data-nome=${estado.estado}"
+				  					data-bs-toggle="modal" 
+				  					data-bs-target="#estadosModal"
+				  				>
+				  				<i class="fas fa-trash"></i>
+				  				</a>
+					  		</td>
+					  	</tr>
+					    <tr>
+					      <td  class="text-center" colspan="4" th:if="${#lists.isEmpty(estados)}">Nenhum estado encontrado</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+				<div th:insert="estados/EstadosModal"></div>
+			</div>
+			
+			<form action="/estados" method="POST" th:object="${estados}">
+				<div class="card notification">
+					<h2>Notificações</h2>
+					<div th:insert="MensagemSucesso"></div>
+				</div>
+			</form>
+			
+		<script src="/js/estadosModal.js"></script>
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+	</body>
+</html>

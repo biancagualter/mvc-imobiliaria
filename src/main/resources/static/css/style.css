@@ -1,0 +1,263 @@
+:root {
+	
+	--bg: linear-gradient(#000, #1f1d2b);
+	--bg-card: #252836;
+	
+	--gray-900: #181719;
+	--gray-700: #2f2f31;
+	--gray-500: #56565a;
+	--gray-300: #717175;
+
+	--white: #ffff;
+	--black: #0000;
+
+	--pink: #ef11ad;
+	--blue: #0a849a;
+
+	--font-family: 'Nunito', sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-family);
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body {
+	display: grid;
+	grid-template-columns: 1fr 3fr 2fr;
+	background: var(--bg);
+	background-attachment:fixed;
+	height:100%;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	background: transparent;
+	height: 100%;
+}
+
+.sidebar .logo-container {
+	margin: 1.5rem auto 1.5rem 2.5rem;
+}
+
+.sidebar .navbar-brand {
+	color: var(--white);
+	font-weight: 700;
+	opacity: 0.85;
+}
+
+.sidebar .navbar-brand span{
+	color: var(--pink);
+	font-size: 2rem
+}
+
+.sidebar img {
+	height: 30px;
+	width: 30px;
+}
+
+.sidebar .links {
+	text-decoration: none;
+	color: var(--gray-300);
+	font-size: 1rem;
+	
+	margin-left: 2.5rem;
+	margin-top: 2.5rem;
+}
+
+.sidebar .links:hover {
+	color: var(--white);
+	opacity: 0.9;
+	margin-left: 2rem;
+	
+	transition: 0.3s
+}
+
+.fa-home, .fa-circle-notch, 
+.fa-money-bill-wave, .fa-stream,
+.fa-sign-out-alt {
+	margin-right: 1rem
+}
+
+.content {
+	margin: 2rem auto auto 1rem;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.content h2 {
+	color: var(--white);
+	font-weight: 700;
+	font-size: 2rem;
+	opacity: 0.85;
+	margin-bottom: 1rem;
+}
+
+.content .input-container {
+	margin: 1rem auto;
+}
+
+.card {
+	background: var(--bg-card);
+	max-width: 50vw;
+	border-radius: 25px;
+}
+
+.card .input-container {
+	margin: 2rem 2rem
+}
+
+.card label {
+	font-size: 1.25rem;	
+	font-weight: 400;
+
+	color: var(--white);
+	opacity: 0.85;
+	
+	margin-bottom: 1rem;
+	margin-left: 0.25rem;
+}
+
+.card .cont-select {
+	display: flex;
+}
+
+.card select {
+	border-radius: 25px;
+	background: var(--bg-card);
+	color: var(--white);
+	margin-left: 0.25rem;
+	margin-bottom: 2rem;
+	
+	max-width: 42rem
+}
+
+.card .cont-input {
+	display: flex;
+}
+
+.card input {
+	border-radius: 25px;
+	background: var(--bg-card);
+	color: var(--white);
+	margin-left: 0.25rem;
+	margin-bottom: 2rem;
+	
+	max-width: 42rem
+}
+.card input:focus {
+	background: var(--bg-card);
+	color: var(--white);
+}
+
+.card .uf {
+	background: var(--bg-card);
+	color: var(--white);
+	margin-left: 0.25rem;
+	margin-bottom: 2rem;
+	
+	max-width: 5rem
+}
+
+.card .quartos {
+	background: var(--bg-card);
+	color: var(--white);
+	
+	margin: 0 1rem 2rem 0.25rem;
+	max-width: 6rem
+}
+
+.card .button-save {
+	border-radius: 25px;
+	background: var(--pink);
+	opacity: 0.8;
+	
+	margin-left: 3rem;
+	padding: 0.35rem 2rem;
+	
+	color: var(--white);
+	
+	font-weight: 700
+}
+
+.card .button-save:hover {
+	color: var(--white);
+	filter: brightness(0.8);
+	
+	transition: 0.2s
+}
+
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	
+	margin: 1rem 0;
+}
+
+.buttons .btn-irLista{
+	border-radius: 25px;
+	background: var(--pink);
+	opacity: 0.8;
+	
+	color: var(--white);
+	
+	font-weight: 700
+}
+
+.buttons .btn-irLista:hover {
+	color: var(--white);
+	filter: brightness(0.8);
+	
+	transition: 0.2s
+}
+
+.buttons .button-next {
+	border-radius: 25px;
+	background: var(--blue);
+	opacity: 0.8;
+	
+	color: var(--white);
+	
+	font-weight: 700
+}
+
+.buttons .button-next:hover {
+	color: var(--white);
+	filter: brightness(0.8);
+	
+	transition: 0.2s
+}
+
+.notification {
+	height: 70vh;
+	width: 23rem;
+	
+	top: 5.5rem;
+	right: 2rem;
+	
+	position: fixed;
+}
+
+.notification h2 {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--white);
+	margin: 1.5rem auto 1rem 1.5rem
+}
+
+.notification div {
+	margin: 0 0.75rem
+}
+
+
+
+
+
+

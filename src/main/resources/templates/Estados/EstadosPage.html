@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+		<title>Estados</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+		
+		<section>
+			<form action="/estados" method="POST" th:object="${estados}">
+				<div class="content">
+					<div class="header">
+						<h2>Registrar estado</h2>
+					</div>
+					<div class="card">
+						<div class="card-body">
+							<input type="hidden" th:field="${estados.id}"/>
+							<div class="input-container row mb-3">
+								<label for="uf">UF</label>
+								<div class="cont-input">
+									<input 
+										class="form-control row uf" 
+										th:classappend="${#fields.hasErrors('uf')} ? 'is-invalid'" 
+										type="text" id="uf" 
+										th:field="*{uf}"
+										autocomplete=off
+									/>
+								</div>
+								<label for="estado">Estado</label>
+								<div class="cont-input">
+									<input 
+										class="form-control row" 
+										th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid'" 
+										type="text" id="estado" 
+										th:field="*{estado}"
+										autocomplete=off
+									/>
+									<div>
+										<button class="btn button-save" type="submit">Salvar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="buttons">
+						<div>
+							<a href="/estados"><button type="button" class="btn btn-irLista">Ver Lista</button></a>
+							<a href="/imoveis"><button type="button" class="btn button-next">Lista de imóveis</button></a>
+						</div>
+							<a href="/municipios/novo"><button type="button" class="btn button-next">Próximo</button></a>
+					</div>
+				</div>
+			</form>
+		</section>
+		
+		<form action="/estados" method="POST" th:object="${estados}">
+			<div class="card notification">
+				<h2>Notificações</h2>
+				<div th:insert="MensagemSucesso"></div>
+				<div th:insert="MensagemErro"></div>
+			</div>
+		</form>
+		
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
+
+		<title>Municipios | Lista</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+		
+			<div class="list-container">
+				<div class="header">
+					<h2>Municípios</h2>
+					<a href="/municipios/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+				</div>
+				<div class="card">
+					<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th class="text-center col-md-1" scope="col">#</th>
+					      <th class="text-center col-md-1" scope="col">Município</th>
+					      <th class="text-center col-md-1" scope="col">Estado</th>
+					      <th class="text-center col-md-1" scope="col">Ações</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr th:each="municipio : ${municipios}">
+					  		<td class="text-center" th:text="${municipio.id}"></td>
+					  		<td class="text-center" th:text="${municipio.municipio}"></td>
+					  		<td class="text-center" th:text="${municipio.estado}"></td>
+					  		<td class="text-center">
+					  			<a 
+					  				class="btn btn-link btn-sm" 
+					  				th:href="@{/municipios/{id}(id=${municipio.id})}"
+					  			>
+					  			<i class="fas fa-edit"></i>
+					  			</a>
+				  				<a 
+				  					class="btn btn-link btn-sm" 
+				  					th:attr="data-id=${municipio.id}, data-nome=${municipio.municipio}"
+				  					data-bs-toggle="modal" 
+				  					data-bs-target="#municipiosModal"
+				  				>
+				  				<i class="fas fa-trash"></i>
+				  				</a>
+					  		</td>
+					  	</tr>
+					    <tr>
+					      <td  class="text-center" colspan="4" th:if="${#lists.isEmpty(municipios)}">Nenhum município encontrado</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+				<div th:insert="municipios/MunicipiosModal"></div>
+			</div>
+			
+			<form action="/municipios" method="POST" th:object="${municipios}">
+				<div class="card notification">
+					<h2>Notificações</h2>
+					<div th:insert="MensagemSucesso"></div>
+				</div>
+			</form>
+		
+		<script src="/js/municipiosModal.js"></script>
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+	</body>
+</html>

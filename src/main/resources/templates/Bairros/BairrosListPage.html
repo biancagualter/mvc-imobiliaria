@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
+
+		<title>Bairros | Lista</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+
+			<div class="list-container">
+				<div class="header">
+					<h2>Bairros</h2>
+					<a href="/bairros/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+				</div>
+				<div class="card">
+					<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th class="text-center col-md-1" scope="col">#</th>
+					      <th class="text-center col-md-1" scope="col">Bairro</th>
+					      <th class="text-center col-md-1" scope="col">Município</th>
+					      <th class="text-center col-md-1" scope="col">Estado</th>
+					      <th class="text-center col-md-1" scope="col">Ações</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr th:each="bairro : ${bairros}">
+					  		<td class="text-center" th:text="${bairro.id}"></td>
+					  		<td class="text-center" th:text="${bairro.bairro}"></td>
+					  		<td class="text-center" th:text="${bairro.municipio}"></td>
+					  		<td class="text-center" th:text="${bairro.estado}"></td>
+					  		<td class="text-center">
+					  			<a 
+					  				class="btn btn-link btn-sm" 
+					  				th:href="@{/bairros/{id}(id=${bairro.id})}"
+					  			>
+					  			<i class="fas fa-edit"></i>
+					  			</a>
+				  				<a 
+				  					class="btn btn-link btn-sm" 
+				  					th:attr="data-id=${bairro.id}, data-nome=${bairro.bairro}"
+				  					data-bs-toggle="modal" 
+				  					data-bs-target="#bairrosModal"
+				  				>
+				  				<i class="fas fa-trash"></i>
+				  				</a>
+					  		</td>
+					  	</tr>
+					    <tr>
+					      <td  class="text-center" colspan="5" th:if="${#lists.isEmpty(bairros)}">Nenhum bairro encontrado</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+				<div th:insert="bairros/BairrosModal"></div>
+			</div>
+		
+			<form action="/bairros" method="POST" th:object="${bairros}">
+				<div class="card notification">
+					<h2>Notificações</h2>
+					<div th:insert="MensagemSucesso"></div>
+				</div>
+			</form>
+		
+		<script src="/js/bairrosModal.js"></script>
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+	</body>
+</html>

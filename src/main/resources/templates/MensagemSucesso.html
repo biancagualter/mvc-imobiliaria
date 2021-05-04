@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<div 
+		class="alert alert-estoque alert-success alert-dismissible" 
+		role="alert" 
+		th:if="${!#strings.isEmpty(mensagem)}"
+	>
+		<span th:text="${mensagem}"><strong>Salvo com sucesso!</strong></span>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+</html>

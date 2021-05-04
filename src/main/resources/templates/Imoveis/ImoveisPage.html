@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.standalone.min.css" />
+
+		<title>Imóveis</title>
+	</head>
+	<body>
+		
+		<div th:insert="Sidebar"></div>
+		
+			<section>
+				<form action="/imoveis" method="POST" th:object="${imoveis}">
+					<div class="content">
+						<div class="header">
+							<h2>Registrar imóvel</h2>
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<input type="hidden" th:field="${imoveis.id}"/>
+								<div class="input-container row mb-3">
+									<label for="categoria">Categoria</label>
+									<div class="cont-select">
+										<select class="form-select" th:field="*{categoria}" th:classappend="${#fields.hasErrors('categoria')} ? 'is-invalid'" >
+											<option 
+												th:each="categorias : ${listaCategorias}" 
+												th:value="${categorias.id}" 
+												th:text="${categorias.categoria}" 
+												
+											/>
+										</select>
+									</div>
+									<label for="negocio">Negócio</label>
+									<div class="cont-select">
+										<select class="form-select" th:field="*{negocio}" th:classappend="${#fields.hasErrors('negocio')} ? 'is-invalid'" >
+											<option 
+												th:each="negocios : ${listaNegocios}" 
+												th:value="${negocios.id}" 
+												th:text="${negocios.negocio}" 
+												
+											/>
+										</select>
+									</div>
+									<label for="estado">Estado</label>
+									<div class="cont-select">
+										<select class="form-select" th:field="*{estado}" th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid'" >
+											<option 
+												th:each="estados : ${listaEstados}" 
+												th:value="${estados.id}" 
+												th:text="${estados.estado}" 
+												
+											/>
+										</select>
+									</div>
+									<label for="quartos">Quartos</label>
+									<div class="cont-input">
+										<input 
+											class="form-control row quartos" 
+											th:classappend="${#fields.hasErrors('quartos')} ? 'is-invalid'" 
+											type="number" 
+											id="quartos" 
+											th:field="*{quartos}"	
+											autocomplete = off
+										/>
+									</div>
+									<label for="valor">Valor</label>
+									<div class="cont-input">
+										<input 
+												class="form-control row" 
+												id="valor"
+												type="text" 
+												th:field="*{valor}"
+												autocomplete="off"
+												th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid'"
+											/>
+									</div>
+									<label for="data">Data</label>
+									<div class="cont-input">
+										<input 
+												type="text" 
+												class="form-control" 
+												id="data" 
+												autocomplete="off"
+												th:field="*{data}" 
+												th:classappend="${#fields.hasErrors('data')} ? 'is-invalid'"
+												data-provide="datepicker"
+												data-date-format="dd/mm/yyyy"
+												data-date-language="pt-BR"
+												data-date-autoclose="true"
+												data-date-today-highlight="true"
+												data-date-orientation="right"
+											/>
+										<div>
+											<button class="btn button-save" type="submit">Salvar</button>
+										</div>
+									</div>
+						
+								</div>
+							</div>
+						</div>
+						<div class="buttons">
+								<a href="/imoveis"><button type="button" class="btn btn-irLista">Ver Lista</button></a>
+						</div>
+					</div>
+				</form>
+			</section>
+			
+			<form action="/imoveis" method="POST" th:object="${imoveis}">
+			<div class="card notification">
+				<h2>Notificações</h2>
+				<div th:insert="MensagemSucesso"></div>
+				<div th:insert="MensagemErro"></div>
+			</div>
+		</form>
+		
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="/js/bootstrap-datepicker.min.js"></script>
+		<script src="/js/bootstrap-datepicker.pt-BR.min.js"></script>
+		<script src="/js/jquery.maskMoney.min.js"></script>	
+		<script src="/js/script.js"></script>	
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+		<title>Bairros</title>
+	</head>
+	<body>
+		
+		<div th:insert="Sidebar"></div>
+		
+			<section>
+				<form action="/bairros" method="POST" th:object="${bairros}">
+					<div class="content">
+						<div class="header">
+							<h2>Registrar bairro</h2>
+						</div>
+						<div class="card">
+							<div class="card-body">
+								<input type="hidden" th:field="${bairros.id}"/>
+								<div class="input-container row mb-3">
+									<label for="bairro">Bairro</label>
+									<div class="cont-input">
+										<input 
+											class="form-control row" 
+											type="text" 
+											id="bairro" 
+											th:field="*{bairro}"
+											th:classappend="${#fields.hasErrors('bairro')} ? 'is-invalid'" 
+											autocomplete="off"
+										/>
+									</div>
+									<label for="municipio">Município</label>
+									<div class="cont-select">
+										<select class="form-select" th:field="*{municipio}" th:classappend="${#fields.hasErrors('municipio')} ? 'is-invalid'" >
+											<option 
+												th:each="municipios : ${listaMunicipios}" 
+												th:value="${municipios.id}" 
+												th:text="${municipios.municipio}" 
+												
+												
+											/>
+										</select>
+									</div>
+									<label for="estado">Estado</label>
+									<div class="cont-select">
+										<select class="form-select" th:field="*{estado}" th:classappend="${#fields.hasErrors('estado')} ? 'is-invalid'" >
+											<option 
+												th:each="estados : ${listaEstados}" 
+												th:value="${estados.id}" 
+												th:text="${estados.estado}" 
+												
+											/>
+										</select>
+										<div>
+											<button class="btn button-save" type="submit">Salvar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="buttons">
+							<div>
+								<a href="/bairros"><button type="button" class="btn btn-irLista">Ver Lista</button></a>
+								<a href="/imoveis"><button type="button" class="btn button-next">Lista de imóveis</button></a>
+							</div>
+								<a href="/imoveis/novo"><button type="button" class="btn button-next">Próximo</button></a>
+						</div>
+					</div>
+				</form>
+			</section>
+			
+			<form action="/bairros" method="POST" th:object="${bairros}">
+			<div class="card notification">
+				<h2>Notificações</h2>
+				<div th:insert="MensagemSucesso"></div>
+				<div th:insert="MensagemErro"></div>
+			</div>
+		</form>
+		
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

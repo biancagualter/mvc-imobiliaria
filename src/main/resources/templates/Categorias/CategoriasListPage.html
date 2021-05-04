@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
+
+		<title>Categorias | Lista</title>
+	</head>
+	<body>
+		
+		<div th:insert="Sidebar"></div>
+		
+		<div class="list-container">
+			<div class="header">
+				<h2>Categorias</h2>
+				<a href="/categorias/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+			</div>
+			<div class="card">
+				<table class="table table-borderless">
+				  <thead>
+				    <tr>
+				      <th class="text-center col-md-1" scope="col">#</th>
+				      <th class="text-center col-md-1" scope="col">Nome</th>
+				      <th class="text-center col-md-1" scope="col">Ações</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  	<tr th:each="categoria : ${categorias}">
+				  		<td class="text-center" th:text="${categoria.id}"></td>
+				  		<td class="text-center" th:text="${categoria.categoria}"></td>
+				  		<td class="text-center">
+				  			<a 
+				  				class="btn btn-link btn-sm" 
+				  				th:href="@{/categorias/{id}(id=${categoria.id})}"
+				  			>
+				  			<i class="fas fa-edit"></i>
+				  			</a>
+			  				<a 
+			  					class="btn btn-link btn-sm" 
+			  					th:attr="data-id=${categoria.id}, data-nome=${categoria.categoria}"
+			  					data-bs-toggle="modal" 
+			  					data-bs-target="#categoriasModal"
+			  				>
+			  				<i class="fas fa-trash"></i>
+			  				</a>
+				  		</td>
+				  	</tr>
+				    <tr>
+				      <td  class="text-center" colspan="3" th:if="${#lists.isEmpty(categorias)}">Nenhuma categoria encontrada</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			<div th:insert="categorias/CategoriasModal"></div>
+		</div>
+		
+		<form action="/categorias" method="POST" th:object="${categorias}">
+			<div class="card notification">
+				<h2>Notificações</h2>
+				<div th:insert="MensagemSucesso"></div>
+			</div>
+		</form>
+		
+		<script src="/js/categoriasModal.js"></script>
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+	</body>
+</html>

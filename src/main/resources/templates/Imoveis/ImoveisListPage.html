@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org/"
+
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html"/>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
+
+		<title>Imóveis | Lista</title>
+	</head>
+	<body>
+	
+		<div th:insert="Sidebar"></div>
+		
+			<div class="list-container">
+				<div class="header">
+					<h2>Imóveis</h2>
+					<a href="/imoveis/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+				</div>
+				<div class="card">
+					<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th class="text-center col-md-1" scope="col">#</th>
+					      <th class="text-center col-md-1" scope="col">Categoria</th>
+					      <th class="text-center col-md-1" scope="col">Negócio</th>
+					      <th class="text-center col-md-1" scope="col">Estado</th>
+					      <th class="text-center col-md-1" scope="col">Quartos</th>
+					      <th class="text-center col-md-1" scope="col">Valor</th>
+					      <th class="text-center col-md-1" scope="col">Data</th>
+					      <th class="text-center col-md-1" scope="col">Ações</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<tr th:each="imovel : ${imoveis}">
+					  		<td class="text-center" th:text="${imovel.id}"></td>
+					  		<td class="text-center" th:text="${imovel.categoria}"></td>
+					  		<td class="text-center" th:text="${imovel.negocio}"></td>
+					  		<td class="text-center" th:text="${imovel.estado}"></td>
+					  		<td class="text-center" th:text="${imovel.quartos}"></td>
+					  		<td class="text-center" th:text="|R$ ${{imovel.valor}} |"></td>
+					  		<td class="text-center" th:text="${{imovel.data}}"></td>
+					  		
+					  		<td class="text-center action-icons">
+					  			<a 
+					  				class="btn btn-link btn-sm" 
+					  				th:href="@{/imoveis/{id}(id=${imovel.id})}"
+					  			>
+					  			<i class="fas fa-edit"></i>
+					  			</a>
+				  				<a 
+				  					class="btn btn-link btn-sm" 
+				  					th:attr="data-id=${imovel.id}"
+				  					data-bs-toggle="modal" 
+				  					data-bs-target="#imoveisModal"
+				  				>
+				  				<i class="fas fa-trash"></i>
+				  				</a>
+					  		</td>
+					  	</tr>
+					    <tr>
+					      <td  class="text-center" colspan="8" th:if="${#lists.isEmpty(imoveis)}">Nenhum imóvel encontrado</td>
+					    </tr>
+					  </tbody>
+					</table>
+				</div>
+				<div th:insert="imoveis/ImoveisModal"></div>
+			</div>
+		
+			<form action="/imoveis" method="POST" th:object="${imoveis}">
+				<div class="card notification">
+					<h2>Notificações</h2>
+					<div th:insert="MensagemSucesso"></div>
+				</div>
+			</form>
+		
+		<script src="/js/imoveisModal.js"></script>
+		<script src="/js/jquery-3.6.0.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+	</body>
+</html>
