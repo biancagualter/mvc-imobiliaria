@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -59,13 +60,27 @@ public class ImoveisController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(@Validated Imoveis imoveis, Errors errors, RedirectAttributes attributes) {
+	public String salvar(@Validated Imoveis imoveis, Errors errors, RedirectAttributes attributes, Model model) {
 		if (errors.hasErrors()) {
+			List<Negocios> listaNegocios = negociosRepository.findAll();
+			List<Categorias> listacategorias = categoriasRepository.findAll();
+			List<Estados> listaEstados = estadosRepository.findAll();
+			
+			model.addAttribute("listaNegocios", listaNegocios);
+			model.addAttribute("listaCategorias", listacategorias);
+			model.addAttribute("listaEstados", listaEstados);
 			return "imoveis/ImoveisPage";
 		}
-		imoveisRepository.save(imoveis);
-		attributes.addFlashAttribute("mensagem", "Imóvel salvo!");
-		return "redirect:/imóvel/novo";
+		
+		try {
+			imoveisRepository.save(imoveis);
+			attributes.addFlashAttribute("mensagem", "Imóvel salvo!");
+			return "redirect:/imoveis/novo";
+		} catch (DataIntegrityViolationException e) {
+			errors.rejectValue("data", null, "Data inválida!");
+			return "imoveis/ImoveisPage";
+		}
+		
 	}
 	
 	@RequestMapping

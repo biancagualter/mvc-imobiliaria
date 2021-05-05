@@ -44,7 +44,6 @@ public class MunicipiosController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvar(@Validated Municipios municipios, Errors errors, RedirectAttributes attributes, Model model) {
-		
 		if (errors.hasErrors()) {
 			return "municipios/MunicipiosPage";
 		}

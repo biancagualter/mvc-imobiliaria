@@ -210,6 +210,8 @@ body {
 }
 
 .btn-yes{
+	color: var(--white);
+	font-weight: 700;
 	background-color: var(--pink);
 	opacity: 0.8
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 
 import com.gft.imob.model.Bairros;
 import com.gft.imob.model.Estados;
@@ -49,8 +50,7 @@ public class BairrosController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(Bairros bairros, Errors errors, RedirectAttributes attributes, Model model) {
-		
+	public String salvar(@Validated Bairros bairros, Errors errors, RedirectAttributes attributes, Model model) {
 		if (errors.hasErrors()) {
 			return "bairros/BairrosPage";
 		}
@@ -61,6 +61,8 @@ public class BairrosController {
 		model.addAttribute("listaEstados", listaEstados);
 		model.addAttribute("listaMunicipios", listaMunicipios);
 
+		bairrosRepository.save(bairros);
+		
 		attributes.addFlashAttribute("mensagem", "Bairro salvo!");
 		return "redirect:/bairros/novo";
 	}

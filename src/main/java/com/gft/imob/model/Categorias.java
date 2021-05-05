@@ -2,6 +2,7 @@ package com.gft.imob.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Categorias {
     @Size(max = 20, message = "Categoria deve ter até 20 caracteres!")
     private String categoria;
     
-    @OneToMany(mappedBy="categoria", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="categoria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Imoveis> imoveis;
 
 

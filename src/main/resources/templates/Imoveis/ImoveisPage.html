@@ -40,11 +40,12 @@
 									</div>
 									<label for="negocio">Negócio</label>
 									<div class="cont-select">
-										<select class="form-select" th:field="*{negocio}" th:classappend="${#fields.hasErrors('negocio')} ? 'is-invalid'" >
+										<select class="form-select" th:field="*{negocio}">
 											<option 
 												th:each="negocios : ${listaNegocios}" 
 												th:value="${negocios.id}" 
 												th:text="${negocios.negocio}" 
+												th:classappend="${#fields.hasErrors('negocio')} ? 'is-invalid'" 
 												
 											/>
 										</select>
@@ -113,7 +114,7 @@
 				</form>
 			</section>
 			
-			<form action="/imoveis" method="POST" th:object="${imoveis}">
+			<form action="/imoveis" method="GET" th:object="${imoveis}">
 			<div class="card notification">
 				<h2>Notificações</h2>
 				<div th:insert="MensagemSucesso"></div>

@@ -2,6 +2,7 @@ package com.gft.imob.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ public class Negocios {
 	
 	private String negocio;
 	
-	@OneToMany(mappedBy="negocio", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="negocio", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Imoveis> imoveis;
 
 	

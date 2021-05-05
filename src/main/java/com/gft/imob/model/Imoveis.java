@@ -3,7 +3,6 @@ package com.gft.imob.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,20 +27,20 @@ public class Imoveis {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@NotNull(message = "Você precisa cadastrar uma categoria!")
 	private Categorias categoria;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@NotNull(message = "Você precisa cadastrar um negócio!")
 	private Negocios negocio;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@NotNull(message = "Você precisa cadastrar um estado!")
 	private Estados estado;
 	
 	@NotNull(message = "Número de quartos é obrigatório!")
-	@Min(value = 0)
+	@Min(value = 0, message = "O número mínimo de quartos é 0")
 	private Integer quartos;
 	
 	@NotNull(message = "Data é obrigatória!")

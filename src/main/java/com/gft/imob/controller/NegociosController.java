@@ -3,7 +3,6 @@ package com.gft.imob.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -38,14 +37,9 @@ public class NegociosController {
 			return "negocios/NegociosPage";
 		}
 		
-		try {
-			negociosRepository.save(negocios);
-			attributes.addFlashAttribute("mensagem", "Negócio salvo!");
-			return "redirect:/negocios/novo";
-		} catch (DataIntegrityViolationException e) {
-			errors.rejectValue("data", null, "Formato de data inválido!");
-			return "negocios/NegociosPage";
-		}
+		negociosRepository.save(negocios);
+		attributes.addFlashAttribute("mensagem", "Negócio salvo!");
+		return "redirect:/negocios/novo";
 	}
 	
 	@RequestMapping

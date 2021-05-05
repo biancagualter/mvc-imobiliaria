@@ -2,8 +2,8 @@ package com.gft.imob.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,8 +27,14 @@ public class Estados {
 	@Size(max= 20, message = "O nome do estado deve ter até 20 caracteres!")
 	private String estado;
 	
-	@OneToMany(mappedBy="estado", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="estado", cascade = CascadeType.ALL)
     private List<Imoveis> imoveis;
+	
+	@OneToMany(mappedBy="estado", cascade = CascadeType.ALL)
+	 private List<Municipios> municipios;
+	 
+	@OneToMany(mappedBy="estado", cascade = CascadeType.ALL)
+	 private List<Bairros> bairros;
  
 	public Long getId() {
 		return id;

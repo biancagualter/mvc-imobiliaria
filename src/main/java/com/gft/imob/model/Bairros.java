@@ -1,6 +1,5 @@
 package com.gft.imob.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,11 +20,11 @@ public class Bairros {
 	@Size(max= 30, message = "O nome do municipio deve ter até 30 caracteres!")
 	private String bairro;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) 
+	@ManyToOne(fetch=FetchType.LAZY)
 	@NotNull(message = "Você precisa cadastrar um município!")
 	private Municipios municipio;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) 
+	@ManyToOne(fetch=FetchType.LAZY)
 	@NotNull(message = "Você precisa cadastrar um estado!")
 	private Estados estado;
 	

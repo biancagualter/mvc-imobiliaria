@@ -16,6 +16,6 @@ modal.addEventListener('show.bs.modal', function (event) {
 	
 	form.attr('action', action + idImovel)
 	
-	modal.find('.modal-body span').html('Tem certeza que deseja excluir o imóvel <strong>' + idImovel + ' - ' + nomeImovel + '</strong>?')
+	modal.find('.modal-body span').html('Tem certeza que deseja excluir o imóvel <strong>' + idImovel + '</strong>?')
 	
 })

@@ -30,6 +30,7 @@ body {
 	grid-template-columns: 1fr 3fr 2fr;
 	background: var(--bg);
 	background-attachment:fixed;
+	overflow: hidden;
 	height:100%;
 }
 
@@ -86,7 +87,7 @@ body {
 section {
 	display: flex;
 	
-	margin: 2rem 4rem
+	margin: 8rem 3rem
 }
 
 .card {

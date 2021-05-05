@@ -5,7 +5,7 @@
 >
 	<div class="modal fade" id="estadosModal" tabindex="-1" data-bs-keyboard="false" data-bs-backdrop="static">
 		<div class="modal-dialog">
-			<form th:attr="data-url-base='/estados'" method="POST" th:method="DELETE">
+			<form th:attr="data-url-base='/estados'" method="POST" th:method="DELETE" onsubmit="this.enviar.disabled=true">
 				<div class="modal-content">
 			    	<div class="modal-header">
 				        <h5 class="modal-title" >Exclusão do estado</h5>
@@ -16,7 +16,7 @@
 			    	</div>
 				    <div class="modal-footer border border-dark">
 				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-				        <button type="submit" class="btn btn-yes">Sim, quero excluir!</button>
+				        <button type="submit" class="btn btn-yes" name="enviar" value="enviar">Sim, quero excluir!</button>
 				    </div>
 			    </div>
 		    </form>

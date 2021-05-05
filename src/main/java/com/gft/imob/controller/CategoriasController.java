@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 
 import com.gft.imob.model.Categorias;
 import com.gft.imob.repository.CategoriasRepository;
+import com.gft.imob.service.CategoriasService;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
