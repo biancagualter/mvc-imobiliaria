@@ -18,6 +18,7 @@
 		<div th:insert="Sidebar"></div>
 		
 			<div class="list-container">
+				
 				<div class="header">
 					<h2>Imóveis</h2>
 					<a href="/imoveis/novo" th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><button type="button" class="btn btn-novo">Novo Registro</button></a>

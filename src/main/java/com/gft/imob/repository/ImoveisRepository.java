@@ -6,4 +6,5 @@ import com.gft.imob.model.Imoveis;
 
 public interface ImoveisRepository extends JpaRepository<Imoveis, Long>{
 	
+
 }
