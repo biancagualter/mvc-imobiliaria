@@ -1,0 +1,143 @@
+:root {
+	
+	--bg: linear-gradient(#000, #1f1d2b);
+	--bg-card: rgba(37, 40, 54, 0.2);
+	
+	--gray-900: #181719;
+	--gray-700: #2f2f31;
+	--gray-500: #56565a;
+	--gray-300: #717175;
+
+	--white: #ffff;
+	--black: #0000;
+
+	--pink: #ef11ad;
+	--blue: #0a849a;
+
+	--font-family: 'Nunito', sans-serif;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: var(--font-family);
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body {
+	background: var(--bg);
+	background-attachment:fixed;
+	height: 100%;
+	width: 100%
+}
+
+.logo-container {
+	margin: 1.5rem auto 1.5rem 2.5rem;
+}
+
+.navbar-brand {
+	color: var(--white);
+	font-weight: 700;
+	opacity: 0.85;
+}
+
+.navbar-brand span{
+	color: var(--pink);
+	font-size: 2rem
+}
+
+.navbar-brand img {
+	height: 30px;
+	width: 30px;
+}
+
+.card::after {
+	background: var(--white)
+}
+
+.card {
+	margin: 0 auto;
+	background: var(--bg-card);
+	max-width: 18vw;
+	border-radius: 25px;
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid var(--pink)
+}
+
+.card-header h3 {
+	color: var(--white);
+	font-weight: 700;
+	font-size: 1.8rem;
+	opacity: 0.85;
+	margin: 0.75rem 0 0.5rem 1rem
+}
+
+.card label {
+	font-size: 1rem;	
+	font-weight: 400;
+
+	color: var(--white);
+	opacity: 0.85;
+	
+	margin-bottom: 0.5rem;
+	margin-left: 0.25rem;
+}
+
+.card .cont-input {
+	display: flex;
+}
+
+.card input {
+	border-radius: 25px;
+	background: var(--bg-card);
+	color: var(--white);
+	margin-left: 0.25rem;
+	margin-bottom: 2rem;
+	
+	max-width: 42rem
+}
+.card input:focus {
+	background: var(--bg-card);
+	color: var(--white);
+	border: 1px solid var(--pink);
+	box-shadow: 0 0 5px var(--pink)
+}
+
+.card .button {
+	float: right
+}
+
+.card .button-entrar {
+	margin: 0.75rem 0;
+	padding: 0.35rem 1.5rem;
+	border-radius: 25px;
+	background: var(--blue);
+	opacity: 0.8;
+	
+	color: var(--white);
+	
+	font-weight: 700
+}
+
+.card .button-entrar:hover {
+	color: var(--white);
+	filter: brightness(0.8);
+	
+	transition: 0.2s
+}
+
+@media (max-width: 1500px) {
+	.card {
+		max-width: 22rem
+	}
+}
+

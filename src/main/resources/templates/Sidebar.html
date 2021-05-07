@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org/"
-
 >
 	
 	<div class="sidebar w3-bar-block">
-		<div class="logo-container">
-		<a class="navbar-brand" href="/">
-			<img src="/images/logo1.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-		bgImobiliaria <span>.</span>
-		</a>
+		<div class="logo-container" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+			<a class="navbar-brand" href="/home">
+				<img src="/images/logo1.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			bgImobiliaria <span>.</span>
+			</a>
 		</div>
-	    <a href="/" class="links"><i class="fas fa-home"></i>Home</a>
-	    <a href="/categorias" class="links"><i class="fas fa-circle-notch"></i>Categorias</a>
-	    <a href="/negocios" class="links"><i class="fas fa-money-bill-wave"></i>Negócios</a>
+		<div class="logo-container" th:if="${#authorization.expression('hasRole(''USER'')')}">
+			<a class="navbar-brand" href="/homepage">
+				<img src="/images/logo1.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			bgImobiliaria <span>.</span>
+			</a>
+		</div>
+	    <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/home" class="links"><i class="fas fa-home"></i>Home</a>
+	    <a th:if="${#authorization.expression('hasRole(''USER'')')}" href="/homepage" class="links"><i class="fas fa-home"></i>Home</a>
+	    <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/categorias" class="links"><i class="fas fa-circle-notch"></i>Categorias</a>
+	    <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/negocios" class="links"><i class="fas fa-money-bill-wave"></i>Negócios</a>
 	    <a href="/imoveis" class="links"><i class="fas fa-stream"></i>Imóveis</a>
-	    <a href="#" class="links"><i class="fas fa-sign-out-alt"></i>Logout</a>
+	    
+	    <form action="/logout" method="POST" class="links">
+	    	<a href="/login?logout" class="links-logout"><i class="fas fa-sign-out-alt"></i>Logout</a>
+	    	
+	    	<input type="hidden" name="_csrf"/>
+	    </form>
 	</div>
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </html>

@@ -7,6 +7,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html"/>
 		<meta name="viewport" content="width=device-width" />
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/styleList.css" />
 
@@ -19,7 +20,7 @@
 			<div class="list-container">
 				<div class="header">
 					<h2>Imóveis</h2>
-					<a href="/imoveis/novo"><button type="button" class="btn btn-novo">Novo Registro</button></a>
+					<a href="/imoveis/novo" th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><button type="button" class="btn btn-novo">Novo Registro</button></a>
 				</div>
 				<div class="card">
 					<table class="table table-borderless">
@@ -32,7 +33,8 @@
 					      <th class="text-center col-md-1" scope="col">Quartos</th>
 					      <th class="text-center col-md-1" scope="col">Valor</th>
 					      <th class="text-center col-md-1" scope="col">Data</th>
-					      <th class="text-center col-md-1" scope="col">Ações</th>
+					      
+					      <th class="text-center col-md-1" th:if="${#authorization.expression('hasRole(''ADMIN'')')}" scope="col">Ações</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -45,7 +47,7 @@
 					  		<td class="text-center" th:text="|R$ ${{imovel.valor}} |"></td>
 					  		<td class="text-center" th:text="${{imovel.data}}"></td>
 					  		
-					  		<td class="text-center action-icons">
+					  		<td class="text-center action-icons" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
 					  			<a 
 					  				class="btn btn-link btn-sm" 
 					  				th:href="@{/imoveis/{id}(id=${imovel.id})}"
@@ -72,7 +74,7 @@
 			</div>
 		
 			<form action="/imoveis" method="POST" th:object="${imoveis}">
-				<div class="card notification">
+				<div class="card notification" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
 					<h2>Notificações</h2>
 					<div th:insert="MensagemSucesso"></div>
 				</div>
